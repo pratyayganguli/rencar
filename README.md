@@ -4,8 +4,12 @@
 
 #### First push to the main branch 19-01-2022 ####
 
+
 Author - Pratyay Ganguli
+
 Gmail - pganguli5520@gmail.com
+
+Make sure you use the stable main branch when you clone this repository
 
 ---
 
