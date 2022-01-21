@@ -44,12 +44,13 @@ public class BookingDAO {
 			ResultSet result = statement.executeQuery();
 			
 			while(result.next()) {
+				int id = result.getInt("id");
 				String person_name = result.getString("person_name");
 				String booking_date = result.getString("booking_date");
 				String starting_date = result.getString("starting_date");
 				String ending_date = result.getString("ending_date");		
 				int car_id = result.getInt("car_id");
-				bookings.add(new Booking(person_name, booking_date, starting_date, ending_date, car_id));
+				bookings.add(new Booking(id, person_name, booking_date, starting_date, ending_date, car_id));
 			}
 		}
 		catch(SQLException e){
@@ -57,5 +58,57 @@ public class BookingDAO {
 		}
 		return bookings;
 	}
-
+	
+	public static String readStartDate(int id) throws ClassNotFoundException {
+		String date = "";
+		try {
+			Connection connection = Database.initConnection();
+			PreparedStatement statement = connection.prepareStatement(SQL.getStartDateQueryById());
+			statement.setInt(1, id);
+			ResultSet result = statement.executeQuery();
+			
+			while(result.next()) {
+				date = result.getString("starting_date");
+			}
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		return date;
+	}
+	
+	public static String readEndDate(int id) throws ClassNotFoundException {
+		String date = "";
+		try {
+			Connection connection = Database.initConnection();
+			PreparedStatement statement = connection.prepareStatement(SQL.getEndDateQueryById());
+			statement.setInt(1, id);
+			ResultSet result = statement.executeQuery();
+			
+			while(result.next()) {
+				date = result.getString("ending_date");
+			}
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		return date;		
+	}
+	public static int readCarId(int id) throws ClassNotFoundException {
+		int car_id = 0;
+		try {
+			Connection connection = Database.initConnection();
+			PreparedStatement statement = connection.prepareStatement(SQL.getCarId());
+			statement.setInt(1, id);
+			ResultSet result = statement.executeQuery();
+			
+			while(result.next()) {
+				car_id = result.getInt("car_id");
+			}
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		return car_id;	
+	}
 }

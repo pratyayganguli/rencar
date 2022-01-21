@@ -4,7 +4,17 @@
 <%@ page import = "rencar.model.Manufacturer" %> 
 <%@ page import = "rencar.DAO.ManufacturerDAO" %> 
 <%
-	String ID 		= request.getParameter("id");
+	//Check if admin is logged in
+	
+	if(session.getAttribute("email") == null){
+		RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+		dispatcher.forward(request, response);
+	}
+
+	String ID = "";
+	if(request.getParameter("id")!= null){
+		ID 		= request.getParameter("id");		
+	}
 	int id 			= Integer.parseInt(ID);
 	String name = ManufacturerDAO.getName(id);
 %>

@@ -12,7 +12,7 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconneubect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Readex+Pro&display=swap" rel="stylesheet">
-		<title>Car Rental System</title>
+		<title>Admin | Car Rental System</title>
 		<style>
 			body{
 				font-family: 'Readex Pro', sans-serif;
@@ -22,11 +22,11 @@
 	<body>
 		<div class = "row row-md-6 justify-content-center mt-4">
 			<div class = "col col-sm-4 mt-4">
-				<h4 class = "text-center">Rencar Book Now Driver Later</h4>
-				<form class = "card card-light" method = "post" action = "login">
+				<h4 class = "text-center font-weight-bold mb-5 pb-2">Admin Login</h4>
+				<form class = "card card-light bg-light" method = "post" action = "/rencar/login">
   					<div class = "card-body">
   						<div class="form-group">
-    						<label for="exampleInputEmail1">Email address</label>
+    						<label for="exampleInputEmail1">Username</label>
     						<input type="text" name = "email" class="form-control form-control-md" required = "required" id="email" aria-describedby="emailHelp" placeholder="Enter email">
     						<small id="emailError">Use registered email.</small>
   						</div>
@@ -36,7 +36,7 @@
   							<small id="passwordError" class="form-text text-muted">Your password.</small>
   						</div>
   						<button type="submit" id = "login" class="btn btn-success">Login</button>
-						<p class = "text-sm mt-2">Do not have an account?<a href = "create-account"> Create one</a></p>
+						<p class = "text-sm mt-2">Not an admin account?<a href = "/rencar/account"> Click here</a></p>
 						<p class = "text-danger text-sm mt-2">Forgot password<a href = "forgot-account"> Click here</a></p>
 					</div>
 				</form>
@@ -47,9 +47,9 @@
 				
 			/* Validation functions */
 				function isValidEmail(email){
-		            if(email.length > 14){
+		            if(email.length > 8){
 		                for(let i=0; i < email.length; i++){
-		                    if(email[i] == '@'){
+		                    if(email[i] == 'n'){
 		                        i++;
 		                        while(i<email.length){
 		                            if(email[i] == '.'){
@@ -79,13 +79,6 @@
 		                $("#login").prop('disabled', false);
 		            }
 		        }
-		    
-			/* AJAX code to check if the email id typed is there in the database*/		    
-		    	document.getElementById("email").onchange = function(){
-		    		const xhr = new XMLHttpRequest();
-		    		xhr.open("GET", "")
-					
-				}		
 		</script>
 	</body>
 </html>

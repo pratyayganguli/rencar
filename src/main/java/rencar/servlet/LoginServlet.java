@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import rencar.DAO.AdminDAO;
 import rencar.DAO.UserDAO;
@@ -36,13 +37,21 @@ public class LoginServlet extends HttpServlet {
 			}
 			
 			try {
-				if(password.equals(AdminDAO.getAdminPassword(email))){	
-					response.sendRedirect("index.jsp?username="+email);
+				if(password.equals(AdminDAO.getAdminPassword(email))){
+					if(request.getParameter("email").contains("rencar.")) {
+						HttpSession session  = request.getSession();
+						session.setAttribute("email", email);
+						response.sendRedirect("index.jsp?username="+email);
+					}
 				}
-				
 				else if(password.equals(UserDAO.getUserPassword(email))){
-					response.sendRedirect("views/dashboard.jsp?email="+email);		
-				}
+					if(request.getParameter("email").contains("@")) {
+						HttpSession session  = request.getSession();
+						session.setAttribute("email", email);
+						RequestDispatcher dispatcher = request.getRequestDispatcher("dashboard");
+						dispatcher.forward(request, response);
+					}
+				}	
 				else {
 					response.sendRedirect("views/forbidden.jsp");	
 				}

@@ -53,7 +53,8 @@ public class Booking {
 		this.status = status;
 	}
 	
-	public Booking(String person_name, String booking_date, String starting_date, String ending_date, int car_id) {
+	public Booking(int id, String person_name, String booking_date, String starting_date, String ending_date, int car_id) {
+		this.id = id;
 		this.person_name = person_name;
 		this.booking_date = booking_date;
 		this.starting_date = starting_date;

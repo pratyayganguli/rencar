@@ -3,7 +3,6 @@
 <%@ page import="rencar.DAO.ManufacturerDAO"%>
 <%@ page import="rencar.model.Manufacturer"%>
 <%@ page import="java.util.List"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>	
 	<head>
 		<meta charset="ISO-8859-1">
@@ -22,12 +21,26 @@
 			}
 		</style>
 	</head>
+	<%
+		if(session.getAttribute("email") == null){
+  			RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+  			dispatcher.forward(request, response);
+  		}
+	%>
 	<body>
 		<div class = "row row-md-6 justify-content-center mt-4">
 			<div class = "col col-sm-4 mt-4">
-				<form class = "card card-light" method = "post" action = "create-model">
+				<div class="container text-right mb-5 pb-3">
+					<a href="#" class="btn btn-primary btn-md">
+						<%=session.getAttribute("email")%>
+					</a>
+					<a href="<%=request.getContextPath()%>/logout" class="btn btn-danger btn-md">Logout <i class="bi bi-box-arrow-left"></i></a>
+				</div>
+				<a class = "btn btn-secondary mb-3" href = "view-car-models">View Car Models <i class="bi bi-eye-fill"></i></a>
+			
+				<form class = "card card-light bg-light" method = "post" action = "create-model">
   					<div class = "card-body">
-  						<h5 class = "text-dark mb-4">Add new car model</h5>
+  						<h5 class = "text-dark mb-4 font-weight-bold">Add new car model</h5>
   						<div class="form-group">
     						<label for="exampleManufacturer">Manufacturer</label>
     						<%

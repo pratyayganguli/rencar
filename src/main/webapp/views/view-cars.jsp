@@ -22,6 +22,13 @@
 			}
 		</style>
 	</head>
+	<%
+		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+		if(session.getAttribute("email") == null){
+			RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+			dispatcher.forward(request, response);
+		}
+	%>
 	<body>
 		<div class="container mt-4">
 			<div class = "row-md mt-4 mb-4">
@@ -30,9 +37,15 @@
 			<div class="container text-left">
 				<a href="<%=request.getContextPath()%>/create-car" class="btn btn-success btn-md">Create New Car <i class="bi bi-person-plus-fill"></i></a>
 			</div>
+			<div class="container text-right mb-4 pb-2">
+				<a href="#" class="btn btn-primary btn-md">
+					<%=session.getAttribute("email")%>
+				</a>
+				<a href="<%=request.getContextPath()%>/logout" class="btn btn-danger btn-md">Logout <i class="bi bi-box-arrow-left"></i></a>
+			</div>
 			<div class = "row-md justify-content-center mt-4">	
 				<table class="table table-bordered">
-					<thead>
+					<thead class="thead-dark">
 						<tr>
 							<th class = "text-center">Car ID</th>
 							<th class = "text-center">Model</th>
@@ -66,7 +79,7 @@
 									}
 								%>
 							</td>
-							<td class = "text-center"><a class = "btn btn-primary btn-md" href=<%="update-car?id="+car.getId()%>>Edit <i class="bi bi-pencil-square"></i></a>
+							<td class = "text-center"><a class = "btn btn-primary btn-md" href=<%="/rencar/update-car?id="+car.getId()%>>Edit <i class="bi bi-pencil-square"></i></a>
 								&nbsp;&nbsp;&nbsp;&nbsp; <a class = "btn btn-danger btn-md"
 								href=<%="/rencar/delete-car?id="+car.getId()%>><i class="bi bi-person-dash-fill"></i> Delete</a></td>
 						</tr>

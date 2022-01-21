@@ -43,7 +43,7 @@ public class CreateBooking extends HttpServlet {
 		
 		try {
 			BookingDAO.createBooking(booking);
-			//response.sendRedirect("views/view-booking.jsp");
+			response.sendRedirect("/rencar/check-booking");
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}

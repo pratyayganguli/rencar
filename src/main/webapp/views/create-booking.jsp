@@ -33,8 +33,12 @@
 			}
 	</style>
 	</head>
-	<% 
-		
+	<% 	
+		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+		if(session.getAttribute("user") == null){
+			RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+			dispatcher.forward(request, response);
+		}
 	%>
 	<body>
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -69,19 +73,9 @@
     		</ul>
     		
     		<form class="form-inline my-2 my-lg-0">
-      			<ul class = "navbar-nav mr-auto">
+      			<ul class = "navbar-nav mr-auto">		
       				<li class="nav-item active">
-        				<a class="nav-link" href="/rencar/login">
-        					<%
-        						if(request.getParameter("email")!= null){
-        					%>
-        							<%=request.getParameter("email")%>
-        					<%
-        						}
-        					%>
-        				</a>
-      				</li>
-      				<li class="nav-item active">
+        				<a href = "#" class = "btn btn-primary"><%=session.getAttribute("user")%></a>
         				<a class="btn bg-danger text-light" href="/rencar/logout">Log out</a>
       				</li>
       			</ul>
@@ -177,7 +171,7 @@
     						</div>
     						<div class="form-group">
     							<label for="exampleInputEmail1">Check car with prices</label>
-    							<select class = "form-control" name = "car_id">
+    							<select class = "form-control" name = "car_id" id = "carId">
     							<% List<Car> cars = CarDAO.readCar(); %>
     							<option>---SELECT---</option>
     							<%
@@ -195,9 +189,9 @@
     								}
     							%>	
     							</select>
-    							<input type = "submit" id = "submit" class = "btn btn-success mt-3" value = "Pay now">
     						</div>
-						</div>
+    						<input type = "submit" id = "submit" class = "btn btn-success mt-3" value = "Book now">
+    					</div>
 					</div>
 				</div>
 			</div>
@@ -216,7 +210,7 @@
         	return false;
     	}
 		function isValidEmail(email){
-            if(email.length > 14){
+            if(email.length > 12){
                 for(let i=0; i < email.length; i++){
                     if(email[i] == '@'){
                         i++;

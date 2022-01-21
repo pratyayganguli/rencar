@@ -30,7 +30,9 @@ public class AdminDAO {
 		List<Admin> admins = new ArrayList<>();
 		try {
 			Connection connection = Database.initConnection();
+			System.out.println("Error"+SQL.getSelectAllAdminQuery());
 			PreparedStatement statement = connection.prepareStatement(SQL.getSelectAllAdminQuery());
+			
 			ResultSet result = statement.executeQuery();
 				while(result.next()) {
 					int id 			= result.getInt("id");
@@ -80,7 +82,7 @@ public class AdminDAO {
 		String password = "";
 		try {
 			Connection connection 		= Database.initConnection();
-			PreparedStatement statement = connection.prepareStatement(SQL.getAdminPasswordByMail());
+			PreparedStatement statement = connection.prepareStatement(SQL.getAdminPasswordById());
 			statement.setInt(1, id);
 			ResultSet result 			= statement.executeQuery();
 			while(result.next()) {

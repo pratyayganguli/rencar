@@ -6,8 +6,15 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>Admin Panel | Rencar</title>
   </head>
-  <body>
-    	<div class = "row justify-content-center pt-2 mb-3 bg-dark">
+  <%
+  	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+  	if(session.getAttribute("email") == null){
+  		RequestDispatcher dispatcher = request.getRequestDispatcher("views/login.jsp");
+  		dispatcher.forward(request, response);
+  	}
+  %>
+  <body>		
+    	<div class = "row justify-content-center pt-2 mb-4 pb-2 bg-dark">
     		<div class = "col-sm-1">
     			<a href = "/rencar/login"><p class = "text-light font-weight-bold">Login</p></a>
     		</div>
@@ -15,28 +22,31 @@
     			<a href = "/rencar/create-account"><p class = "text-light font-weight-bold">Register</p></a>
     		</div>
     		<div class = "col-sm-1">
-    			<a href = "/rencar/create-car"><p class = "text-light font-weight-bold">Add Car</p></a>
+    			<a href = "/rencar/view-cars"><p class = "text-light font-weight-bold">Cars</p></a>
     		</div>
     		<div class = "col-sm-2">
-    			<a href = "/rencar/create-manufacturer"><p class = "text-light font-weight-bold">Add Manufacturer</p></a>
+    			<a href = "/rencar/view-manufacturers"><p class = "text-light font-weight-bold">Car Manufacturers</p></a>
     		</div>
     		<div class = "col-sm-1">
-    			<a href = "/rencar/create-model"><p class = "text-light font-weight-bold">Add Model</p></a>
+    			<a href = "/rencar/view-car-models"><p class = "text-light font-weight-bold">Car Model</p></a>
     		</div>
     		<div class = "col-sm-1">
-    			<a href = "/rencar/create-admin"><p class = "text-light font-weight-bold">Add Admin</p></a>
+    			<a href = "/rencar/view-admins"><p class = "text-light font-weight-bold">Administrators</p></a>
     		</div>
     		<div class = "col-sm-1">
-    			<a href = "/rencar/view-admins"><p class = "text-light font-weight-bold">View Admins</p></a>
+    			<a class = "btn btn-danger mt-0" href = "/rencar/logout">Logout</a>
     		</div>
+    		
     	</div>
     	<div class = "row justify-content-center mt-4">
     		<div class = "col-md-4 justify-content-center">
     			<div class = "card bg-dark">
     				<div class = "card-body">
     					<h4 class = "card-title text-light mb-3">Active users</h4>
-    					<p class = "card-subtitle text-light"> We have over active users to check their information and help with
+    					<p class = "card-subtitle text-light"> We have over 1000 active users to check their information and help with
     					the support click here</p>
+    					<a class = "btn btn-light mt-2" href = "/rencar/view-users"><span class = "text-dark font-weight-bold">Users</span></a>
+    					<a class = "btn btn-light mt-2" href = "/rencar/create-user"><span class = "text-dark font-weight-bold">Create New User</span></a>
     				</div>
     			</div>
     		</div>
@@ -63,6 +73,7 @@
     					<h4 class = "card-title text-light mb-3">Admins</h4>
     					<p class = "card-subtitle text-light">Know your peers</p>
     					<a class = "btn btn-light mt-2" href = "/rencar/view-admins"><span class = "text-dark font-weight-bold">View Admins</span></a>
+    					<a class = "btn btn-light mt-2" href = "/rencar/create-admin"><span class = "text-dark font-weight-bold">Add an Admin</span></a>
     				</div>
     			</div>
     		</div>
@@ -72,9 +83,10 @@
     		<div class = "col-md-4 justify-content-center">
     			<div class = "card bg-primary">
     				<div class = "card-body">
-    					<h4 class = "card-title text-light mb-3">Manage Prices</h4>
-    					<p class = "card-subtitle text-light">Set the prices</p>
-    					<a class = "btn btn-dark mt-2"><span class = "text-light">View Prices</span></a>
+    					<h4 class = "card-title text-light mb-3">Manage Drivers</h4>
+    					<p class = "card-subtitle text-light">Set up an driver account, within a few seconds</p>
+    					<a class = "btn btn-light mt-2"><span class = "text-dark font-weight-bold" href = "view-driver">View Drivers</span></a>
+    					<a class = "btn btn-light mt-2"><span class = "text-dark font-weight-bold" href = "create-driver">Create New Driver</span></a>
     				</div>
     			</div>
     		</div>
@@ -84,7 +96,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script>
-    	console.log($);
+    	
     </script>
   </body>
 </html>

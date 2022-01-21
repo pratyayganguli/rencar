@@ -28,8 +28,10 @@
 	</style>
 </head>
 	<% 
-		if(request.getParameter("email") == null){
-			response.sendRedirect("forbidden.jsp");
+		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+		if(session.getAttribute("user") == null){
+			RequestDispatcher dispatcher = request.getRequestDispatcher("user-login.jsp");
+			dispatcher.forward(request, response);
 		}
 	%>
 	<body>
@@ -42,10 +44,10 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
    			<ul class="navbar-nav mr-auto">
       			<li class="nav-item active">
-        			<a class="nav-link" href="../check-booking">Bookings <span class="sr-only">(current)</span></a>
+        			<a class="nav-link" href="/rencar/check-booking">Bookings <span class="sr-only">(current)</span></a>
       			</li>
       			<li class="nav-item active">
-        			<a class="nav-link" href="#">Rent Your own car</a>
+        			<a class="nav-link" href="/rencar/create-booking">Rent Your own car</a>
       			</li>
       			<li class="nav-item dropdown">
         			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -67,15 +69,8 @@
     		<form class="form-inline my-2 my-lg-0">
       			<ul class = "navbar-nav mr-auto">
       				<li class="nav-item active">
-        				<a class="nav-link" href="/rencar/login">
-        					<%
-        						if(request.getParameter("email")!= null){
-        							String email = request.getParameter("email");
-        					%>
-        							<%=request.getParameter("email")%>
-        					<%
-        						}
-        					%>
+        				<a class="btn btn-primary mr-2" href="/rencar/login">
+        					<%=session.getAttribute("user")%>
         				</a>
       				</li>
       				<li class="nav-item active">
@@ -91,7 +86,7 @@
 					<div class = "card bg-light">
 						<div class = "card-body">
 							<div class = "row justify-content-center">
-								<a class = "btn btn-secondary mr-2" href = "../create-booking">Create a booking</a>
+								<a class = "btn btn-secondary mr-2" href = "/rencar/create-booking">Create a booking</a>
 								<a class = "btn btn-primary" href = "" >Explore range of cars</a>
 							</div>
 						</div>

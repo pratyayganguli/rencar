@@ -36,6 +36,6 @@ public class CreateCarServlet extends HttpServlet {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		response.sendRedirect("index.jsp");
+		response.sendRedirect("view-cars");
 	}
 }

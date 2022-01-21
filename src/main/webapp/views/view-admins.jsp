@@ -20,10 +20,23 @@
 			}
 		</style>
 	</head>
+	<%
+		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+		if(session.getAttribute("email") == null){
+			RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+			dispatcher.forward(request, response);
+		}
+	%>
 	<body>
 		<div class="container mt-4">
 			<div class = "row-md mt-4 mb-4">
 				<h3 class = "font-weight-bold text-center">Registered Admins</h5>
+			</div>
+			<div class="container text-right">
+				<a href="" class="btn btn-primary btn-md">
+					<%=session.getAttribute("email")%>
+				</a>
+				<a href="<%=request.getContextPath()%>/logout" class="btn btn-danger btn-md">Logout <i class="bi bi-box-arrow-left"></i></a>
 			</div>
 			<div class="container text-left">
 				<a href="<%=request.getContextPath()%>/create-admin" class="btn btn-success btn-md">Create Admin <i class="bi bi-person-plus-fill"></i></a>

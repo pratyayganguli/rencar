@@ -3,7 +3,7 @@ package rencar.database;
 import java.sql.*;
 
 public class Database {
-	static String driver 			= "com.mysql.jdbc.Driver";
+	static String driver 			= "com.mysql.cj.jdbc.Driver";
 	static final String user 		= "root";
 	static final String password 	= "root";
 	static final String database 	= "rencar_db";
@@ -15,13 +15,16 @@ public class Database {
 		try {
 			Class.forName(driver);
 			connection = DriverManager.getConnection(URL, user, password);
+			System.out.println("Connection" + connection);
 		}
 		catch(SQLException e) {
 			e.printStackTrace();
+			System.out.println("Database connection failure");
 		}
 		catch(ClassNotFoundException e) {
-			e.printStackTrace();
-		}
+			e.printStackTrace();	
+			//Log
+			System.out.println("Driver class not found");		}
 		return connection; 
 	}
 }

@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ page import = "rencar.model.Manufacturer" %>
 <%@ page import = "rencar.DAO.ManufacturerDAO" %>
+<%@ page import = "rencar.DAO.PaymentDAO" %>
 <%@ page import = "java.util.List" %>
 <!DOCTYPE html>
 <html>	
@@ -22,66 +23,42 @@
 			}
 		</style>
 	</head>
+	<% 
+		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+		if(session.getAttribute("user") == null){
+			RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+			dispatcher.forward(request, response);
+		}
+	%>
 	<body>
-		<div class = "row row-md-12 justify-content-center mt-4">
-			<div class = "col col-sm-4 mt-4">
-				<h4 class = "text-muted mt-2 mb-4 pb-1">Renting Details</h4>
-				<form class = "card card-light" method = "post" action = "create-payment">
-  					<div class = "card-body">
-  						<div class="form-group">
-    						<label for="exampleInputManufacturer">Customer name</label>
-    						<p class = "form-control">
-    							<% %>
-    						</p>
-    					</div>
-  						<div class="form-group">
-    						<label for="exampleInputManufacturer">Customer email</label>
-    						<p class = "form-control">
-    							<% %>
-    						</p>
-    					</div>
-    					<div class="form-group">
-    						<label class = "text-weight-200" for="exampleInputManufacturer">Customer phone</label>
-    						<p class = "form-control">
-    							<% %>
-    						</p>
-    					</div>
-  						<div class="form-group">
-    						<label class = "text-weight-200" for="exampleInputManufacturer">City</label>
-    						<p class = "form-control">
-    							<% %>
-    						</p>
-    					</div>
-  						<div class="form-group">
-    						<label class = "text-weight-200" for="exampleInputManufacturer">Location</label>
-    						<p class = "form-control">
-    							<% %>
-    						</p>
-    					</div>
-  						<div class="form-group">
-    						<label class = "text-weight-200" for="exampleInputManufacturer">Amount</label>
-    						<p class = "form-control">
-    							<% %>
-    							100000
-    						</p>
-    					</div>
-  						<div class="form-group">
-    						<label class = "text-weight-200" for="exampleInputManufacturer">Car Model</label>
-    						<p class = "form-control">
-    							<% %>
-    						</p>
-    					</div>			
-  					</div>
-			</div>
-			<div class = "col col-sm-4 mt-4">
-					<h4>Payment Details</h4>
+		<div class = "row-md mt-4 mb-4">
+				<div class="container text-right mb-5 pb-3">
+					<a href="#" class="btn btn-primary btn-md">
+						<%=session.getAttribute("user")%>
+					</a>
+					<a href="<%=request.getContextPath()%>/logout" class="btn btn-danger btn-md">Logout <i class="bi bi-box-arrow-left"></i></a>
+				</div>
+		</div>
+		<div class = "row row-md-8 justify-content-center mt-4">
+			<div class = "col col-md-6 mt-4">
+				<form class = "card card-light bg-light pt-3" method = "post" action = "create-payment">
+					<h4 class = "text-center font-weight-bold">Payment Details</h4>
 					<div class = "card-body">
   						<div class="form-group">
+    						<p class = "font-weight-bold"> Total Billed Amount </p>
+    						<label>
+    							<%=PaymentDAO.calcPaymentAmount(Integer.parseInt(request.getParameter("booking_id")))%>
+    							<input type = "hidden" name = "booking_id" id = "booking_id" value = <%=request.getParameter("booking_id")%>>
+    							<input type = "hidden" name = "amount" id = "amount" value = <%=PaymentDAO.calcPaymentAmount(Integer.parseInt(request.getParameter("booking_id")))%>>
+    						</label>
+    					</div>
+  						
+  						<div class="form-group">
     						<label for="exampleInputManufacturer">Mode of payment</label>
-    						<select class = "form-control"  name = "payment_mode">
+    						<select class = "form-control"  name = "mode_of_payment">
     							<option>--SELECT--</option>
     							<option value = "debit card">Debit Card</option>
-    							<option value = "credit-card">Credit Card</option>
+    							<option value = "credit card">Credit Card</option>
     						</select>
     					</div>
   						<div class="form-group">
@@ -90,11 +67,6 @@
     						<small id="emailHelp" class="form-text text-muted">16 digit card number</small>
   						</div>
   						
-  						<div class="form-group">
-    						<label for="exampleInputEmail1">Card Holder Name</label>
-    						<input type="text" name = "card_holder_name" class="form-control form-control-md" required = "required" id="exampleInputEmail1" aria-describedby="emailHelp">
-    						<small id="emailHelp" class="form-text text-muted">Name of the card owner</small>
-  						</div>
   						<button type="submit" class="btn btn-success">Pay</button>
 					</div>
 				</div>

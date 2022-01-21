@@ -57,5 +57,12 @@ public class CarModel {
 		this.name 				= name;
 		this.manufacturer_id 	= manufacturer_id;
 		this.status 			= 1;	
-	}		
+	}
+	
+	public CarModel(int id, int manufacturer_id, String name, int status) {
+		this.id 				= id;
+		this.name 				= name;
+		this.manufacturer_id 	= manufacturer_id;
+		this.status 			= status;
+	}
 }

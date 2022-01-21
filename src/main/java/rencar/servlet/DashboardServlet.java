@@ -17,4 +17,7 @@ public class DashboardServlet extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("views/dashboard.jsp");
 		dispatcher.forward(request, response);
 	}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+		
+	}
 }

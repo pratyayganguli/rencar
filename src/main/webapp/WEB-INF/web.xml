@@ -154,6 +154,36 @@
   	<description></description>
   	<servlet-class>rencar.servlet.CheckBooking</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>CreateDriver</servlet-name>
+  	<display-name>CreateDriver</display-name>
+  	<description></description>
+  	<servlet-class>rencar.servlet.CreateDriver</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>LogoutServlet</servlet-name>
+  	<display-name>LogoutServlet</display-name>
+  	<description></description>
+  	<servlet-class>rencar.servlet.LogoutServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>DeleteCar</servlet-name>
+  	<display-name>DeleteCar</display-name>
+  	<description></description>
+  	<servlet-class>rencar.servlet.DeleteCar</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>UserLogin</servlet-name>
+  	<display-name>UserLogin</display-name>
+  	<description></description>
+  	<servlet-class>rencar.servlet.UserLogin</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>AccountServet</servlet-name>
+  	<display-name>AccountServet</display-name>
+  	<description></description>
+  	<servlet-class>rencar.servlet.AccountServet</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>CreateUserServlet</servlet-name>
   	<url-pattern>/create-account</url-pattern>
@@ -249,5 +279,25 @@
   <servlet-mapping>
   	<servlet-name>CheckBooking</servlet-name>
   	<url-pattern>/check-booking</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>CreateDriver</servlet-name>
+  	<url-pattern>/create-driver</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>LogoutServlet</servlet-name>
+  	<url-pattern>/logout</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>DeleteCar</servlet-name>
+  	<url-pattern>/delete-car</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>UserLogin</servlet-name>
+  	<url-pattern>/user-login</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>AccountServet</servlet-name>
+  	<url-pattern>/account</url-pattern>
   </servlet-mapping>
 </web-app>

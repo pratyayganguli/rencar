@@ -9,6 +9,7 @@ import java.util.List;
 
 import rencar.database.Database;
 import rencar.database.SQL;
+import rencar.model.Car;
 import rencar.model.CarModel;
 import rencar.model.Manufacturer;
 
@@ -71,5 +72,53 @@ public class CarModelDAO {
 			e.printStackTrace();
 		}
 		return model;
+	}
+	
+	public static int readManufacturerById(int id) throws ClassNotFoundException {
+		int manufacturer_id = 0;
+		try {
+			Connection connection = Database.initConnection();
+			PreparedStatement statement = connection.prepareStatement(SQL.getManufacturerIdByQuery());
+			statement.setInt(1, id);
+			ResultSet result = statement.executeQuery();
+				while(result.next()) {
+					manufacturer_id = result.getInt("manufacturer_id");	
+				}
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return manufacturer_id;
+	}
+	
+	public static int getStatus(int id) throws ClassNotFoundException {
+		int status = 0;
+		try {
+			Connection connection = Database.initConnection();
+			PreparedStatement statement = connection.prepareStatement(SQL.getCarModelStatusByIdQuery());
+			statement.setInt(1, id);
+			ResultSet result = statement.executeQuery();
+				while(result.next()) {
+					status = result.getInt("status");	
+				}
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return status;
+	}
+	public static void updateCarModel(CarModel model, int id) throws ClassNotFoundException, SQLException {
+		try {
+			Connection connection 		= Database.initConnection();
+			PreparedStatement statement = connection.prepareStatement(SQL.getUpdateCarModelQuery());
+			statement.setInt(1, model.getManufacturer_id());
+			statement.setString(2, model.getName());
+			statement.setInt(3, model.getStatus());
+			statement.setInt(4, id);
+			statement.executeUpdate();
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}	
 	}
 }

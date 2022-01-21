@@ -21,11 +21,24 @@
 			}
 		</style>
 	</head>
+	<% 
+		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+		if(session.getAttribute("user") == null){
+			RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+			dispatcher.forward(request, response);
+		}
+	%>
 	<body>
 		<div class = "row row-md-6 justify-content-center mt-4">
+			<div class="container text-right mb-5 pb-3">
+				<a href="#" class="btn btn-primary btn-md">
+						<%=session.getAttribute("user")%>
+				</a>
+				<a href="<%=request.getContextPath()%>/logout" class="btn btn-danger btn-md">Logout <i class="bi bi-box-arrow-left"></i></a>
+			</div>
 			<div class = "col col-sm-4 mt-4">
-				<h4 class = "text-center mt-3 mb-4">Enter your email to check your bookings</h4>
-				<form class = "card card-light" method = "get" action = "view-bookings">
+				<h4 class = "text-center font-weight-bold mt-3 mb-4">Enter your email to check your bookings</h4>
+				<form class = "card card-light bg-light" method = "get" action = "view-bookings">
   					<div class = "card-body">
   						<div class="form-group">
     						<label for="exampleInputEmail1">Registered E-mail</label>
@@ -39,7 +52,7 @@
 		</div>
 		<script>
 		function isValidEmail(email){
-            	if(email.length > 14){
+            	if(email.length > 10){
                 for(let i=0; i < email.length; i++){
                     if(email[i] == '@'){
                         i++;

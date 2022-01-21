@@ -24,11 +24,14 @@
 			}
 		</style>
 	</head>
+		<%
+			response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+		%>
 	<body>
 		<div class = "row row-md-6 justify-content-center mt-4">
 			<div class = "col col-sm-4 mt-4">
 				<h4 class = "text-muted mt-2 mb-4 pb-1">Create Car Availability</h4>
-				<form class = "card card-light" method = "post" action = "create-car">
+				<form class = "card card-light bg-light" method = "post" action = "create-car">
   					<div class = "card-body">
   						<div class="form-group">
     						<label for="exampleInputManufacturer">Manufacturer</label>

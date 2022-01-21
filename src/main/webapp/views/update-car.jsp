@@ -8,12 +8,15 @@
 <%@ page import = "rencar.model.CarModel" %> 
 <%@ page import = "rencar.DAO.CarModelDAO" %> 
 <%@ page import = "java.util.List" %>
-
 <%
-	String ID 		= request.getParameter("id");
+	String ID = "";
+	if(request.getParameter("id") != null){
+		ID 		= request.getParameter("id");	
+	}
 	int id 			= Integer.parseInt(ID);
 	String rent = CarDAO.getRent(id);
 %>
+
 <!DOCTYPE html>
 <html>	
 	<head>
@@ -33,21 +36,36 @@
 			}
 		</style>
 	</head>
+	<% 
+		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+		if(session.getAttribute("email") == null){
+  			RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+  			dispatcher.forward(request, response);
+  		}
+	%>
 	<body>
 		<div class = "row row-md-6 justify-content-center mt-4">
+			<div class="container text-right">
+				<a href="" class="btn btn-primary btn-md">
+					<%=session.getAttribute("email")%>
+				</a>
+				<a href="<%=request.getContextPath()%>/logout" class="btn btn-danger btn-md">Logout <i class="bi bi-box-arrow-left"></i></a>
+			</div>
 			<div class = "col col-sm-4 mt-4">
-				<h4 class = "font-weight-bold">Update Manufacturer details</h4>
-				<p class = "text-muted">With great power comes great responsibilities</p>
-				<form class = "card card-light" method = "post" action = "update-car">
+				<h4 class = "font-weight-bold">Update Car details</h4>
+				<p class = "text-muted">Make sure a valid admin is logged in</p>
+				<form class = "card card-light bg-light" method = "post" action = "update-car">
   					<div class = "card-body">
   						<input type = "hidden" name = "id" value= <%=id%>>
-  						
+  						<label for="exampleInputFirstname">Manufacturer</label>
   						<div class="form-group">
     						<%
     							List<Manufacturer> manufacturers = ManufacturerDAO.readManufacturer();
     						%>
     						<select class = "form-control form-control-md" name = "manufacturer_id">
-    							<option>--SELECT--</option>
+    							<option value = <%=CarDAO.getManufacturerId(id)%>>
+    								<%=ManufacturerDAO.readManufacturerById(CarDAO.getManufacturerId(id))%>
+    							</option>
     							<%
     								for(Manufacturer manufacturer: manufacturers){
     							%>	
@@ -61,11 +79,14 @@
   						</div>
   						
   						<div class="form-group">
+  							<label for="exampleInputFirstname">Model</label>
     						<%
     							List<CarModel> models = CarModelDAO.readCarModel();
     						%>
     						<select class = "form-control form-control-md" name = "model_id">
-    							<option>--SELECT--</option>
+    							<option value = <%=CarDAO.getModelId(id)%>>
+    								<%=CarModelDAO.readModelById(CarDAO.getModelId(id))%>
+    							</option>
     							<%
     								for(CarModel model: models){
     							%>	
@@ -104,7 +125,6 @@
     							%>
     						</select>
   						</div>
-  						
   						</div class = "form-group">
   							<input type="submit" class="btn btn-success" value = "Edit details">
 						</div>

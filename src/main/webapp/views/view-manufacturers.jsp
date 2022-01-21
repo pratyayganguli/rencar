@@ -20,19 +20,32 @@
 			}
 		</style>
 	</head>
+	<%
+		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+		if(session.getAttribute("email") == null){
+			RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+			dispatcher.forward(request, response);
+		}
+	%>
 	<body>
 		<div class="container mt-4">
 			<div class = "row-md mt-4 mb-4">
-				<h3 class = "font-weight-bold text-center">Registered Manufacturer</h5>
+				<h3 class = "font-weight-bold text-center">Registered Manufacturers</h5>
 			</div>
 			<div class="container text-left">
-				<a href="<%=request.getContextPath()%>/create-manufacturer" class="btn btn-success btn-md">Create Manufacturer <i class="bi bi-person-plus-fill"></i></a>
+				<a href="<%=request.getContextPath()%>/create-manufacturer" class="btn btn-success btn-md">Create Manufacturer</a>
+			</div>
+			<div class="container text-right">
+				<a href="#" class="btn btn-primary btn-md">
+					<%=session.getAttribute("email")%>
+				</a>
+				<a href="<%=request.getContextPath()%>/logout" class="btn btn-danger btn-md">Logout <i class="bi bi-box-arrow-left"></i></a>
 			</div>
 			<div class = "row-md justify-content-center mt-4">	
 				<table class="table table-bordered">
-					<thead>
+					<thead class="thead-dark">
 						<tr>
-							<th class = "text-center">Manufacturer</th>
+							<th class = "text-center">Manufacturer Name</th>
 							<th class = "text-center">Actions</th>
 						</tr>
 					</thead>

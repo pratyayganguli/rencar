@@ -19,12 +19,25 @@
 			}
 		</style>
 	</head>
+	<%
+		if(session.getAttribute("email") == null){
+			RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+			dispatcher.forward(request, response);
+		}
+	%>
 	<body>
 		<div class = "row row-md-6 justify-content-center mt-4">
+			<div class="container text-right">
+				<a href="" class="btn btn-primary btn-md">
+					<%=session.getAttribute("email")%>
+				</a>
+				<a href="<%=request.getContextPath()%>/logout" class="btn btn-danger btn-md">Logout <i class="bi bi-box-arrow-left"></i></a>
+			</div>
+			
 			<div class = "col col-sm-4 mt-4">
 				<h4 class = "font-weight-bold">Create new admin</h4>
-				<p class = "text-muted">With great power comes great responsibilities</p>
-				<form class = "card card-light" method = "post" action = "create-admin">
+				<p class = "text-muted">Make sure you are an admin</p>
+				<form class = "card card-light bg-light" method = "post" action = "create-admin">
   					<div class = "card-body">
   						<input type = "hidden" name = "creator_id" value = "1">
   						<div class="form-group">

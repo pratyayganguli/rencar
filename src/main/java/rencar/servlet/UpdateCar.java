@@ -37,7 +37,7 @@ public class UpdateCar extends HttpServlet {
 							int id = Integer.parseInt(ID);
 							String MODEL_ID = request.getParameter("model_id");
 							String MANUFACTURER_ID = request.getParameter("manufacturer_id");
-							String rent = request.getParameter("request");
+							String rent = request.getParameter("rent");
 							String STATUS = request.getParameter("status");
 							int model_id = Integer.parseInt(MODEL_ID);
 							int manufacturer_id = Integer.parseInt(MANUFACTURER_ID);

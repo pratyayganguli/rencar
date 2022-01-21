@@ -12,7 +12,7 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconneubect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Readex+Pro&display=swap" rel="stylesheet">	
-	<title>Unauthorized Acess</title>
+	<title>Unauthorized Access</title>
 	<style>
 			body{
 				font-family: 'Readex Pro', sans-serif;

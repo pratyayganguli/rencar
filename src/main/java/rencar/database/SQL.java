@@ -19,7 +19,7 @@ public class SQL {
 	}
 	
 	public static String getBookingQueryByMail() {
-		String Query = "SELECT person_name, booking_date, starting_date, ending_date, car_id FROM booking WHERE person_email = ?";
+		String Query = "SELECT id, person_name, booking_date, starting_date, ending_date, car_id FROM booking WHERE person_email = ? AND payment_status = 0";
 		return Query;
 	}
 	public static String getSelectAllUserQuery() {
@@ -118,8 +118,16 @@ public class SQL {
 		String Query = "SELECT name from Manufacturer WHERE id = ?;";
 		return Query;
 	}
+	public static String getManufacturerIdByQuery() {
+		String Query = "SELECT manufacturer_id from carmodel WHERE id = ?;";
+		return Query;
+	}
 	public static String getCarStatusByIdQuery() {
 		String Query = "SELECT status from Car WHERE id = ?;";
+		return Query;
+	}
+	public static String getCarModelStatusByIdQuery() {
+		String Query = "SELECT status from carmodel WHERE id = ?;";
 		return Query;
 	}
 	public static String getModelByIdQuery() {
@@ -138,16 +146,76 @@ public class SQL {
 		String Query = "UPDATE car SET model_id = ?, manufacturer_id = ?, rent = ?, status = ? WHERE id = ?;";
 		return Query;
 	}
+	public static String getUpdateCarModelQuery() {
+		String Query = "UPDATE carmodel SET manufacturer_id = ?, name = ?, status = ? WHERE id = ?;";
+		return Query;
+	}
 	public static String deleteManufacturerQuery() {
 		String Query = "DELETE FROM manufacturer WHERE id = ?;";
+		return Query;
+	}
+	public static String deleteCarQuery() {
+		String Query = "DELETE FROM Car WHERE id = ?;";
+		return Query;
+	}
+	public static String getManufacturerIdQuery() {
+		String Query = "SELECT manufacturer_id FROM Car WHERE id = ?;";
+		return Query;
+	}
+	public static String getModelIdQuery() {
+		String Query = "SELECT model_id FROM Car WHERE id = ?;";
 		return Query;
 	}
 	public static String getInsertCarQuery() {
 		String Query = "INSERT INTO Car(model_id, manufacturer_id, rent, status) VALUES(?, ?, ?, ?)";
 		return Query;
 	}
+	public static String getInsertPaymentQuery() {
+		String Query = "INSERT INTO payment(amount, mode_of_payment, card_number, booking_id) VALUES(?, ?, ?, ?)";
+		return Query;
+	}
+	public static String getSelectAllPaymentQuery() {
+		String Query = "SELECT amount, mode_of_payment, booking_id FROM payment;";
+		return Query;
+	}
 	public static String getSelectAllCarQuery() {
 		String Query = "SELECT id, model_id, manufacturer_id, rent, status from Car";
+		return Query;
+	}
+	public static String getInsertDriverQuery() {
+		String Query = "INSERT INTO Driver(firstname, lastname, unique_license_number, car_id, status) VALUES(?, ?, ?, ?, ?)";
+		return Query;
+	}
+	public static String getSelectAllDriverQuery() {
+		String Query = "SELECT id, firstname, lastname, unique_license_number, car_id, status from Driver";
+		return Query;
+	}
+	public static String getUpdateDriverQuery() {
+		String Query = "UPDATE Driver SET firstname = ?, lastname = ?, unique_license_number = ?, car_id = ?, status = ? WHERE id = ?;";
+		return Query;
+	}
+	public static String getDriverNameQuery() {
+		String Query = "DELETE FROM Driver WHERE id = ?";
+		return Query;		
+	}
+	public static String getStartDateQueryById() {
+		String Query = "SELECT starting_date from booking WHERE id = ?";
+		return Query;
+	}
+	public static String getEndDateQueryById() {
+		String Query = "SELECT ending_date from booking WHERE id = ?";
+		return Query;
+	}
+	public static String getCarId() {
+		String Query = "SELECT car_id from booking where id = ?";
+		return Query;
+	}
+	public static String getPriceQuery() {
+		String Query = "SELECT rent from car where id = ?";
+		return Query;
+	}
+	public static String getUpdatePaymentStatusQuery() {
+		String Query = "UPDATE booking SET payment_status = ? WHERE id = ?";
 		return Query;
 	}
 }

@@ -22,7 +22,8 @@
 	<body>
 		<div class = "row row-md-6 justify-content-center mt-4">
 			<div class = "col col-sm-4 mt-4">
-				<form class = "card card-light" method = "post" action = "create-account">
+				<h4 class = "text-center font-weight-bold mb-3">Sign up with Rencar today</h4>
+				<form class = "card card-light bg-light" method = "post" action = "create-account">
   					<div class = "card-body">
   						<div class="form-group">
     						<label for="firstname">First name</label>

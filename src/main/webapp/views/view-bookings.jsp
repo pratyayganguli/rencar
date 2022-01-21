@@ -22,11 +22,25 @@
 	</head>
 	<body>
 		<%
+			response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+			if(session.getAttribute("user") == null){
+				RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+				dispatcher.forward(request, response);
+			}
+			
 			if(request.getParameter("email") == null){
 				response.sendRedirect("views/forbidden.jsp");	
 			}
 		%>
 		<div class="container mt-4">
+			<div class = "row-md mt-4 mb-4">
+				<div class="container text-right mb-5 pb-3">
+					<a href="#" class="btn btn-primary btn-md">
+						<%=session.getAttribute("user")%>
+					</a>
+					<a href="<%=request.getContextPath()%>/logout" class="btn btn-danger btn-md">Logout <i class="bi bi-box-arrow-left"></i></a>
+				</div>
+			</div>
 			<div class = "row-md mt-4 mb-4">
 				<h3 class = "font-weight-bold text-center">Car Booked</h5>
 			</div>
@@ -56,7 +70,7 @@
 							<td class = "text-center"><%=booking.getStarting_date()%></td>
 							<td class = "text-center"><%=booking.getEnding_date()%></td>
 							<td class = "text-center"><%=booking.getCar_id()%></td>
-							<td class = "text-center"><a href = "" class = "btn btn-success btn-sm">Pay</a></td>
+							<td class = "text-center"><a href = "/rencar/create-payment?booking_id=<%=booking.getId()%>" class = "btn btn-success btn-sm">Pay</a></td>
 						</tr>
 					<%
 						}

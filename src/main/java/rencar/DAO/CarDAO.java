@@ -51,6 +51,39 @@ public class CarDAO {
 		return cars;
 	}
 	
+	public static int getManufacturerId(int id) throws ClassNotFoundException {
+		int manufacturer_id = 0;
+		try {
+			Connection connection = Database.initConnection();
+			PreparedStatement statement = connection.prepareStatement(SQL.getManufacturerIdQuery());
+			statement.setInt(1, id);
+			ResultSet result = statement.executeQuery();
+				while(result.next()) {
+					manufacturer_id = result.getInt("manufacturer_id");	
+				}
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return manufacturer_id;
+	}
+	public static int getModelId(int id) throws ClassNotFoundException {
+		int model_id = 0;
+		try {
+			Connection connection = Database.initConnection();
+			PreparedStatement statement = connection.prepareStatement(SQL.getModelIdQuery());
+			statement.setInt(1, id);
+			ResultSet result = statement.executeQuery();
+				while(result.next()) {
+					model_id = result.getInt("model_id");	
+				}
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return model_id;
+	}
+	
 	public static String getRent(int id) throws ClassNotFoundException {
 		String rent = "";
 		try {
@@ -99,5 +132,34 @@ public class CarDAO {
 		catch(SQLException e) {
 			e.printStackTrace();
 		}	
+	}
+	
+	public static void deleteCar(int id) throws ClassNotFoundException {
+		try {
+			Connection connection 		= Database.initConnection();
+			PreparedStatement statement = connection.prepareStatement(SQL.deleteCarQuery());
+			statement.setInt(1, id);
+			statement.executeUpdate();
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static String readPrice(int id) throws ClassNotFoundException {
+		String price = "";
+		try {
+			Connection connection = Database.initConnection();
+			PreparedStatement statement = connection.prepareStatement(SQL.getPriceQuery());
+			statement.setInt(1, id);
+			ResultSet result = statement.executeQuery();
+				while(result.next()) {
+					price = result.getString("rent");	
+				}
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return price;
 	}
 }
