@@ -20,6 +20,14 @@ CREATE TABLE User(
 					status INT DEFAULT 1
 					);				
 
+CREATE TABLE UserProfile(
+					id INT PRIMARY KEY AUTO_INCREMENT,
+					user_id INT NOT NULL, 
+					license_file VARCHAR(100) NOT NULL,
+					profile_pic_file VARCHAR(100) NOT NULL,
+					status INT DEFAULT 0
+					);				
+
 CREATE TABLE Car(
 					id INT PRIMARY KEY AUTO_INCREMENT,
 					model_id INT NOT NULL,
@@ -94,19 +102,24 @@ CREATE TABLE Payment(
 					card_number VARCHAR(16) NOT NULL,
 					booking_id INT NOT NULL,
 					status INT DEFAULT 1	
-);
+					);
 
 INSERT INTO User(name, email, password) VALUES('abc', 'test@mail.com', 'test123');	
+INSERT INTO User(name, email, password) VALUES('test', 'test123@mail.com', '123');	
+
 INSERT INTO Admin(username, password, creator_id) VALUES('rencar.admin', 'test123', 100);
+
 INSERT INTO Manufacturer(name) VALUES('Tata');
 INSERT INTO Manufacturer(name) VALUES('Mahindra');
 INSERT INTO Manufacturer(name) VALUES('Ford');
 INSERT INTO Manufacturer(name) VALUES('Hyundai');
 INSERT INTO Manufacturer(name) VALUES('Renault');
 INSERT INTO Manufacturer(name) VALUES('Maruti Suzuki');
+
 INSERT INTO CarModel(name, manufacturer_id) VALUES('Nexon', 1);
 INSERT INTO CarModel(name, manufacturer_id) VALUES('XUV 700', 2);
 INSERT INTO CarModel(name, manufacturer_id) VALUES('Scorpio', 2);
+
 INSERT INTO State(name) VALUES('Rajasthan');
 INSERT INTO State(name) VALUES('Tripura');
 INSERT INTO State(name) VALUES('Assam');
@@ -115,6 +128,7 @@ INSERT INTO State(name) VALUES('Manipur');
 INSERT INTO State(name) VALUES('Nagaland');
 INSERT INTO State(name) VALUES('Sikkim');
 INSERT INTO City(name, state_id) VALUES('Jaipur', 1);
+
 INSERT INTO City(name, state_id) VALUES('Agartala', 2);
 INSERT INTO City(name, state_id) VALUES('Shillong', 4);
 INSERT INTO City(name, state_id) VALUES('Kohima', 6);

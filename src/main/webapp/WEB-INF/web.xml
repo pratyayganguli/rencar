@@ -184,6 +184,18 @@
   	<description></description>
   	<servlet-class>rencar.servlet.AccountServet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>AdminProfile</servlet-name>
+  	<display-name>AdminProfile</display-name>
+  	<description></description>
+  	<servlet-class>rencar.model.AdminProfile</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>DriverAccountServlet</servlet-name>
+  	<display-name>DriverAccountServlet</display-name>
+  	<description></description>
+  	<servlet-class>rencar.servlet.DriverAccountServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>CreateUserServlet</servlet-name>
   	<url-pattern>/create-account</url-pattern>
@@ -299,5 +311,13 @@
   <servlet-mapping>
   	<servlet-name>AccountServet</servlet-name>
   	<url-pattern>/account</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>AdminProfile</servlet-name>
+  	<url-pattern>/AdminProfile</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>DriverAccountServlet</servlet-name>
+  	<url-pattern>/DriverAccountServlet</url-pattern>
   </servlet-mapping>
 </web-app>

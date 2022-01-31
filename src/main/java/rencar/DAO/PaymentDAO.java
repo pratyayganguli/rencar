@@ -22,7 +22,13 @@ public class PaymentDAO {
 		int price 		= Integer.parseInt(PRICE); 		
 		int startDay 	= Integer.parseInt(start_day);
 		int endDay 		= Integer.parseInt(end_day);
-		int days 		= endDay - startDay;
+		int days;
+		if(endDay > startDay) {
+			days 		= endDay - startDay;
+		}
+		else {
+			days = startDay - endDay;
+		}
 		
 		int AMOUNT = days*price;
 		amount = Integer.toString(AMOUNT);

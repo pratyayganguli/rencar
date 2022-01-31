@@ -1,6 +1,6 @@
 package rencar.database;
-
 import java.sql.*;
+import rencar.app.Log;
 
 public class Database {
 	static String driver 			= "com.mysql.cj.jdbc.Driver";
@@ -19,11 +19,10 @@ public class Database {
 		}
 		catch(SQLException e) {
 			e.printStackTrace();
-			System.out.println("Database connection failure");
+			Log.connectivityError();
 		}
 		catch(ClassNotFoundException e) {
 			e.printStackTrace();	
-			//Log
 			System.out.println("Driver class not found");		}
 		return connection; 
 	}

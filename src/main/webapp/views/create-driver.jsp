@@ -38,13 +38,13 @@
   						
   						<div class="form-group">
     						<label for="exampleInputEmail1">First Name</label>
-    						<input type="text" name = "firstname" class="form-control form-control-md" required = "required" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter rent">
+    						<input type="text" name = "firstname" class="form-control form-control-md" required = "required" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter First Name">
     						<small id="firstNameError" class="">eg. Raman</small>
   						</div>
   						
   						<div class="form-group">
     						<label for="exampleInputEmail1">Last Name</label>
-    						<input type="text" name = "lastname" class="form-control form-control-md" required = "required" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter rent">
+    						<input type="text" name = "lastname" class="form-control form-control-md" required = "required" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Last Name">
     						<small id="lastName" class="">eg. Joshi</small>
   						</div>
   						

@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import rencar.database.*;
 import rencar.model.User;
 
@@ -26,12 +25,15 @@ public class UserDAO {
 	public static void readUser() {
 		
 	}
+	
 	public static void updateUser() {
 		
 	}
+	
 	public static void deleteUser() {
 		
 	}
+	
 	public static String getUserPassword(String mail) throws ClassNotFoundException {
 		String password = "";
 		try {
